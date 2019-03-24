@@ -1,0 +1,20 @@
+.Peli{
+	background-color: #F0F3F4;
+	padding: 0.5vw;
+	margin-bottom: 0.5vw;
+	margin-right: 7vw;
+	margin-left: 7vw;
+	border-radius: 20px;
+	border-bottom: 0.125em solid black;
+	text-align: center;
+}
+@media only screen and (max-width: 750px){
+.Peli{
+	display: none;
+}
+}
+#canvas{
+margin-top: 20px;
+margin-bottom: 20px;
+border: 1px solid green;
+}
