@@ -1,3 +1,7 @@
+html{
+	font-family: 'Roboto', sans-serif;
+}
+
 .Peli{
 	background-color: #F0F3F4;
 	padding: 0.5vw;
@@ -17,4 +21,15 @@
 margin-top: 20px;
 margin-bottom: 20px;
 border: 1px solid green;
+}
+#TulosOtsikko{
+text-align: left;
+margin-top: 30px;
+margin-left: 50px;
+}
+#Tulokset{
+text-align: left;
+margin-left: 50px;
+border-spacing: 10px;
+border: 1px solid black;
 }

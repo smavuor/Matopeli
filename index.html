@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang = "fi">
-
+<head>
+  <title>Matopeli</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel = "shortcut icon" type="image/png" href = "favicon/snake.png"
+</head>
 <link rel="stylesheet" href = "styles.css">
 
 <body>
   <div class = "Peli">
-  	<h1><span>Matopeli</span></h1>
-  		<p> Näppäiminä ovat w, a, s ja d. Pelin loputtua paina enteriä aloittaaksesi uuden pelin. </p>
+  	<h1>Matopeli</h1>
+    <table id = "Tulokset">
+      <tr id = "ekaRivi">
+        <th>Nimi</th>
+        <th>Pisteet</th>
+      </tr>
+    </table>
+  		<p> Liikkumiseen käytettävät Näppäimet ovat w, a, s ja d. Pelin loputtua syötä nimi tekstikenttään ja paina enteriä. </p>
   			<canvas id = "canvas" width = 600 height = 600>
   			</canvas>
   				<div id = "Pisteet">Pisteet: 0</div>
   </div>
 
   <script src = "frontend.js">type = "text/javascript"</script>
-  <script src="backend.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/CanvasInput/1.2.7/CanvasInput.min.js">type = "text/javascript"</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </body>

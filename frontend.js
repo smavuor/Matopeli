@@ -22,9 +22,9 @@ window.onload = function(){
  x: cWidth/2,
  y: cHeight/2
 };
- var nameAndScore =
- {name: '',
-	score: ''}
+ var responseDataName;
+ var responseDataScore;
+ var table = document.getElementById("Tulokset");
 
  var food = {
  x: Math.floor(Math.random()*30)*boxWH,
@@ -34,7 +34,7 @@ window.onload = function(){
  eatSound.src = ("Audio/appleSound.mp3")
 
 document.addEventListener("keydown", direction);
-document.addEventListener("keydown", checkEnter);
+document.addEventListener("keydown", checkControl);
 
 function direction(event){
 	var key = event.keyCode;
@@ -53,8 +53,26 @@ else if(key == 83 && k != "up"){
 }
 
 function SnakeGame(){
+		checkPreviousScores();
 		game = setInterval(Draw, 100);
 }
+
+function checkPreviousScores(){
+	axios
+  .get('http://localhost:3001/namesAndScores')
+  .then(response => {
+    var namesScores = response.data
+
+		for(var i = 0; i<namesScores.length; i++){
+			var row = table.insertRow(1);
+			var column1 = row.insertCell(0);
+			var column2 = row.insertCell(1);
+			column1.innerHTML =  "<td>" + namesScores[i].name + "</td> ";
+			column2.innerHTML = "<td>" + namesScores[i].score + "</td>";
+		}
+  })
+}
+
 //Draw the field and update the snake movement
 function Draw(){
 	ctx.fillStyle = "green";
@@ -106,7 +124,6 @@ function Gameover(){
 	alert("Peli loppui");
 	clearInterval(game);
 	makeTextInput();
-	EmptyWriteCanvas(ctx);
 }
 snake.unshift(nHead);
 }
@@ -124,17 +141,17 @@ function CheckSnakeC(head, array){
 	}return false;
 }
 //Empty the canvas and make text to it
-function EmptyWriteCanvas(c){
+function WriteToCanvas(c){
 	c.clearRect(0, 0, cWidth, cHeight);
-	//c.font = "24px Arial";
-	//c.fillStyle = "black";
-	//c.textAlign = "center";
-	//c.fillText("Paina enter-näppäintä aloittaaksesi uuden pelin", cWidth/2, cHeight/2);
+	c.font = "24px Arial";
+	c.fillStyle = "black";
+	c.textAlign = "center";
+	c.fillText("Paina control-näppäintä aloittaaksesi uuden pelin", cWidth/2, cHeight/2);
 }
 //New game initialization
-function checkEnter(e){
+function checkControl(e){
 	var x = e.keyCode;
-	if(x == 13){
+	if(x == 17){
 		ctx.clearRect(0, 0, cWidth, cHeight);
     var emptyArray = [];
     snake = emptyArray;
@@ -149,6 +166,7 @@ function checkEnter(e){
 }
 
 function makeTextInput(){
+	ctx.clearRect(0, 0, cWidth, cHeight);
 	document.getElementById('canvas').focus();
 	var input = new CanvasInput({
   canvas: canvas,
@@ -171,14 +189,31 @@ function makeTextInput(){
 input.focus();
 
 input.onsubmit(function saveNameAndScore(){
-	nameAndScore =
+	var nameAndScore =
 	{
 		name: input.value(),
 		score: points
 	}
 	input.destroy();
 
-	connectToServer(nameAndScore);
+	axios
+	.post('http://localhost:3001/namesAndScores', nameAndScore)
+    .then(response => {
+			responseDataName = response.data.name;
+			responseDataScore = response.data.score;
 
-})
+		var row = table.insertRow(1);
+  	var column1 = row.insertCell(0);
+  	var column2 = row.insertCell(1);
+  	column1.innerHTML =  "<td>" + responseDataName + "</td> ";
+  	column2.innerHTML = "<td>" + responseDataScore + "</td>";
+    })
+		document.addEventListener("keydown", checkEnter);
+	})
+}
+function checkEnter(e){
+	var x = e.keyCode;
+		if(x == 13){
+			WriteToCanvas(ctx);
+		}
 }
