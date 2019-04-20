@@ -105,6 +105,7 @@ function Draw(){
 for(var i = 0; i<snake.length; i++){
 	ctx.fillStyle = (i == 0) ? "black" : "white";
 	ctx.fillRect(snake[i].x, snake[i].y, boxWH, boxWH);
+	console.log("Madon y-koordinaatti: " + snake[i].y);
 
 	ctx.strokeStyle = "red";
 	ctx.strokeRect(snake[i].x, snake[i].y, boxWH, boxWH);
