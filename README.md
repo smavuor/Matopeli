@@ -13,7 +13,7 @@ ovat kuin minikirjastoja itse pääkirjaston eli Nodejs sisällä. Frontend taul
 kautta. Palvelin toteuttaa osittain REST-apin mukaista reititystekniikkaa. Lyhyesti dataa liikkuu frontendin, backendin ja
 sen tietokannan välillä näin: frontend ← palvelin ← → tietokanta.
 
-Käyttöohjeet:
+Käyttöohjeet (olettaen, että npm on jo asennettu):
 
 1. Mene haluamaasi kansioon, johon projekti tulee ja suorita käsky git clone https://github.com/Pjavah/Matopeli.git
    Nyt kaikki projektin ajamiseen tiedostot pitäisivät olla kansiossa Matopeli.
