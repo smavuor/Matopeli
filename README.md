@@ -23,4 +23,5 @@ Käyttöohjeet (olettaen, että npm on jo asennettu):
 3. Käynnistetään palvelin tulosten hakemiseksi  ja tallentamiseksi tietokantaan käskyllä npm run watch.
 4. Profit
 
-PS. Laita äänet päälle matopeliä pelatessa, niin pelikokemus parantuu.    
+PS. Laita äänet päälle matopeliä pelatessa, niin pelikokemus parantuu.Emme vastaa matopelin aiheuttamista peliriippuvuuksista. 
+© 
